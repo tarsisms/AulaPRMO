@@ -1,7 +1,6 @@
 package br.edu.ifal.aulaprmo.components
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,13 +24,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.edu.ifal.aulaprmo.R
-import br.edu.ifal.aulaprmo.domain.Package
-import br.edu.ifal.aulaprmo.screen.packages
+import br.edu.ifal.aulaprmo.database.sampleDataTourPackages
+import br.edu.ifal.aulaprmo.domain.TourPackage
+import br.edu.ifal.aulaprmo.extensions.toBrazilianCurrency
+
 import coil3.compose.AsyncImage
 
 
 @Composable
-fun CardPackage(p: Package) {
+fun CardPackage(p: TourPackage) {
     Surface(
         shadowElevation = 4.dp,
         shape = RoundedCornerShape(8.dp)
@@ -43,7 +44,7 @@ fun CardPackage(p: Package) {
                 contentDescription = "",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(160.dp),
+                    .height(180.dp),
                 contentScale = ContentScale.Crop
             )
             Column(
@@ -61,13 +62,13 @@ fun CardPackage(p: Package) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(Icons.Outlined.Settings, contentDescription = "")
-                    Text("5 Diárias")
+                    Text("${p.numNights} Diárias")
                     Icon(Icons.Outlined.Person, contentDescription = "")
-                    Text("1 Pessoa")
+                    Text("${p.groupSize} Pessoa")
                 }
-                Text("A partir de R$ 6.816")
+                Text("A partir de ${p.previousPrice.toBrazilianCurrency()}")
                 Text(
-                    p.currentPrice.toString(),
+                    p.currentPrice.toBrazilianCurrency(),
                     color = Color(0xFFFD6C00),
                     fontWeight = FontWeight.Bold,
                     fontSize = 32.sp,
@@ -89,6 +90,6 @@ private fun CardPackagePreview() {
     Surface(
         Modifier.padding(16.dp)
     ) {
-        CardPackage(packages.get(0))
+        CardPackage(sampleDataTourPackages[0])
     }
 }

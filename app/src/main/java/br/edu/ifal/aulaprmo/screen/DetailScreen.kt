@@ -19,11 +19,12 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.edu.ifal.aulaprmo.R
+import br.edu.ifal.aulaprmo.database.sampleDataTourPackages
 import coil3.compose.AsyncImage
 
 
 // Pacote fixo p/ testes
-val p = packages.get(0)
+val p = sampleDataTourPackages[0]
 
 @Composable
 fun DetailScreen() {
