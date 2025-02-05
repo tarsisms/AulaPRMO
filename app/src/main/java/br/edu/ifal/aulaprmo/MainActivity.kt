@@ -16,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import br.edu.ifal.aulaprmo.screen.DetailScreen
 import br.edu.ifal.aulaprmo.screen.HomeScreen
 import br.edu.ifal.aulaprmo.screen.RegisterScreen
+import br.edu.ifal.aulaprmo.screen.RegisterUserScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,9 @@ class MainActivity : ComponentActivity() {
                             }
                             composable("detail") {
                                 DetailScreen()
+                            }
+                            composable("registerUser") {
+                                RegisterUserScreen(navController = navController)
                             }
                             composable("register") {
                                 RegisterScreen(navController = navController)

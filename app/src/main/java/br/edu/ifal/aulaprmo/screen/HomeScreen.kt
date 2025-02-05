@@ -63,7 +63,7 @@ fun HomeScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    navController.navigate("register")
+                    navController.navigate("registerUser")
                 }
             ) {
                 Icon(
