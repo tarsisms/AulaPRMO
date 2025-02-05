@@ -12,7 +12,7 @@ import br.edu.ifal.aulaprmo.domain.TourPackage
 )
 abstract class DatabaseHelper : RoomDatabase() {
 
-    abstract fun tourPackageDao() : TourPackageDao
+    abstract fun tourPackageDao(): TourPackageDao
 
     // Static do Kotlin
     companion object {
@@ -21,8 +21,7 @@ abstract class DatabaseHelper : RoomDatabase() {
                 context,
                 DatabaseHelper::class.java,
                 "tourPackage.db"
-            ).allowMainThreadQueries()
-                .build()
+            ).build()
         }
     }
 

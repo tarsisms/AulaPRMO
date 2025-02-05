@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,6 +28,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.edu.ifal.aulaprmo.database.DatabaseHelper
 import br.edu.ifal.aulaprmo.domain.TourPackage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @Composable
@@ -37,6 +41,7 @@ fun RegisterScreen(navController: NavController) {
     var price by remember { mutableStateOf("") }
     var image by remember { mutableStateOf("") }
 
+    val scope = rememberCoroutineScope()
 
     Scaffold {
         Column(
@@ -95,8 +100,15 @@ fun RegisterScreen(navController: NavController) {
                     numNights = 10,
                 )
 
-                DatabaseHelper.getInstance(context)
-                    .tourPackageDao().insert(tp)
+
+                scope.launch {
+                    withContext(Dispatchers.IO) {
+                        DatabaseHelper
+                            .getInstance(context)
+                            .tourPackageDao()
+                            .insert(tp)
+                    }
+                }
 
                 navController.popBackStack()
 
