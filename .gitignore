@@ -1,0 +1,33 @@
+Use esta versão sem duplicações:
+
+```gitignore
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Configurações locais e chaves
+local.properties
+keystore.properties
+*.jks
+*.keystore
+
+# Arquivos gerados pelo Android
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Compilação e logs
+*.class
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+```
