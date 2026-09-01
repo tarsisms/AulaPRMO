@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AulaPRMO</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_explore_screen">ExploreScreen</string>
 </resources>

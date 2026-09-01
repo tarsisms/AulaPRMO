@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AulaPRMO">
         <activity
-            android:name=".MainActivity"
+            android:name=".ExploreScreen"
             android:exported="true"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_activity_explore_screen"
             android:theme="@style/Theme.AulaPRMO"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
