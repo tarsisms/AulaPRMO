@@ -14,16 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AulaPRMO">
         <activity
-            android:name=".ExploreScreen"
+            android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/title_activity_explore_screen"
+            android:label="@string/title_activity_main"
             android:theme="@style/Theme.AulaPRMO"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -1,8 +1,6 @@
 package br.edu.ifal.aulaprmo
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,33 +33,32 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.edu.ifal.aulaprmo.ui.theme.AulaPRMOTheme
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import br.edu.ifal.aulaprmo.ui.theme.Typography
 import coil.compose.AsyncImage
 
-class ExploreScreen : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setContent {
-            AulaPRMOTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LazyColumn(modifier = Modifier.padding(innerPadding)) {
-                        items(count = 10) {
-                            Card()
-                        }
-
-                    }
-
-                }
+@Composable
+fun ExploreScreen(navController: NavController) {
+    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+        LazyColumn(modifier = Modifier.padding(innerPadding)) {
+            items(count = 10) {
+                Card(navController = navController)
             }
         }
     }
 }
 
 @Composable
-fun Card() {
-    Surface(modifier = Modifier.padding(16.dp)) {
+fun Card(navController: NavController) {
+    // Card
+    Surface(
+        modifier = Modifier
+            .padding(16.dp)
+            .clickable {
+                navController.navigate("detailScreen")
+            }
+    ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(2.dp)
         ) {
@@ -130,5 +127,5 @@ fun Card() {
 @Preview(showBackground = true)
 @Composable
 fun CardPreview() {
-    Card()
+    Card(rememberNavController())
 }
