@@ -1,4 +1,4 @@
-package br.edu.ifal.aulaprmo
+package br.edu.ifal.aulaprmo.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -6,18 +6,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,22 +32,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import br.edu.ifal.aulaprmo.R
+import br.edu.ifal.aulaprmo.domain.Accommodation
 import br.edu.ifal.aulaprmo.ui.theme.Typography
 import coil.compose.AsyncImage
 
 @Composable
-fun ExploreScreen(navController: NavController) {
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        LazyColumn(modifier = Modifier.padding(innerPadding)) {
-            items(count = 10) {
-                Card(navController = navController)
-            }
-        }
-    }
-}
-
-@Composable
-fun Card(navController: NavController) {
+fun CardAccommodation(accommodation: Accommodation, navController: NavController) {
     // Card
     Surface(
         modifier = Modifier
@@ -64,7 +52,7 @@ fun Card(navController: NavController) {
         ) {
             Box {
                 AsyncImage(
-                    model = "https://news.airbnb.com/wp-content/uploads/sites/4/2019/06/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1.jpg?fit=3200%2C2133",
+                    model = accommodation.imageUrl,
                     contentDescription = "",
                     modifier = Modifier
                         .fillMaxWidth()
@@ -88,7 +76,7 @@ fun Card(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    "Harlingen, Netherlands",
+                    accommodation.location,
                     style = Typography.headlineLarge,
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -97,7 +85,7 @@ fun Card(navController: NavController) {
                     modifier = Modifier.size(14.dp)
                 )
                 Text(
-                    "4.76",
+                    "${accommodation.rating}",
                     fontSize = 16.sp,
                     fontFamily = Font(R.font.manrope).toFontFamily(),
                 )
@@ -105,16 +93,16 @@ fun Card(navController: NavController) {
             }
 
             Text(
-                "Professional Host", color = Color(0xFF6C6C6C),
+                accommodation.host, color = Color(0xFF6C6C6C),
                 fontFamily = Font(R.font.manrope).toFontFamily(),
             )
             Text(
-                "18 - 23 Dec",
+                accommodation.dates,
                 color = Color(0xFF6C6C6C),
                 fontFamily = Font(R.font.manrope).toFontFamily(),
             )
             Text(
-                "$1065 total",
+                "$${accommodation.total} total",
                 fontSize = 15.sp,
                 fontWeight = FontWeight.W600,
                 textDecoration = TextDecoration.Underline
@@ -127,5 +115,16 @@ fun Card(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun CardPreview() {
-    Card(rememberNavController())
+    CardAccommodation(
+        Accommodation(
+            id = 1,
+            total = 2225.0,
+            rating = 4.80,
+            dates = "10-31 Dec",
+            location = "Harlingen, Netherlands",
+            host = "Professional Host",
+            imageUrl = "https://news.airbnb.com/wp-content/uploads/sites/4/2019/06/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1.jpg?fit=3200%2C2133",
+        ),
+        rememberNavController()
+    )
 }
