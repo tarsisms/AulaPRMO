@@ -15,6 +15,9 @@ interface AccommodationDao {
     fun insert(accommodation: Accommodation)
 
     @Query("SELECT * FROM Accommodation")
-    fun findAll(): List<Accommodation>
+    suspend fun findAll(): List<Accommodation>
+
+    @Query("SELECT * FROM Accommodation")
+    suspend fun findAllSuspendFunction(): List<Accommodation>
 
 }

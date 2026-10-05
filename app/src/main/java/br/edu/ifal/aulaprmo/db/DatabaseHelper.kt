@@ -23,7 +23,8 @@ abstract class DatabaseHelper : RoomDatabase() {
                 context,
                 DatabaseHelper::class.java,
                 "airbnb.db"
-            ).allowMainThreadQueries().build()
+            ).build()
+            // .allowMainThreadQueries().build()
         }
     }
 }
