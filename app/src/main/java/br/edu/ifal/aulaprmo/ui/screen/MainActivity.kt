@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.edu.ifal.aulaprmo.ui.screen.RegisterUserScreen
 import br.edu.ifal.aulaprmo.ui.theme.AulaPRMOTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,7 +30,7 @@ class MainActivity : ComponentActivity() {
             AirbnbApp { // Implementação do Content
                 NavHost(
                     navController = navController,
-                    startDestination = "exploreScreen"
+                    startDestination = "registerUserScreen"
                 ) {
 
                     composable("exploreScreen") {
@@ -38,6 +39,10 @@ class MainActivity : ComponentActivity() {
 
                     composable("detailScreen") {
                         DetailScreen()
+                    }
+
+                    composable("registerUserScreen") {
+                        RegisterUserScreen()
                     }
                 }
             }

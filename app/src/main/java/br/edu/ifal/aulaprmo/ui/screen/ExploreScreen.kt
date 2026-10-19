@@ -1,5 +1,6 @@
 package br.edu.ifal.aulaprmo
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,9 +13,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
+import br.edu.ifal.aulaprmo.api.RetrofitHelper
 import br.edu.ifal.aulaprmo.db.DatabaseHelper
 import br.edu.ifal.aulaprmo.domain.Accommodation
+import br.edu.ifal.aulaprmo.domain.Address
 import br.edu.ifal.aulaprmo.ui.components.CardAccommodation
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Response
 
 @Composable
 fun ExploreScreen(navController: NavController) {
@@ -61,6 +68,20 @@ fun ExploreScreen(navController: NavController) {
             .findAllSuspendFunction()
 
         accommodationsList.addAll(accommodations)
+
+
+        // Exemplo 1: Chamada de API com Retrofit Call (requisição síncrona)
+        // withContext(Dispatchers.IO) {
+        //     val call: Call<Address> = RetrofitHelper().addressApi.findByCep("57300190")
+        //     val response: Response<Address> = call.execute()
+        //     Log.i("RESPONSE", "ExploreScreen: ${response.body()}")
+        // }
+
+        // Exemplo 2: Chamada de API com Retrofit usando função suspend (coroutines)
+        // val address = RetrofitHelper().addressApi.findByCep("57300190")
+        // Log.i("RESPONSE", "ExploreScreen: $address")
+
+
     }
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
